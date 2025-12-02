@@ -1,3 +1,4 @@
+from time import time_ns
 from common import get_input
 
 input = [[int(x) for x in line.split("-")] for line in get_input().read_text().split(",")]
@@ -33,10 +34,13 @@ def part_2(input):
     
     sol = 0
     c = []
+    s = []
+    d = 0
 
     for seq in input:
         start, end = seq
         for i in range(start, end+1):
+            c.clear()
             s = list(reversed(tuple(int_to_list_of_ints(i))))
             d = len(s)
 
@@ -57,5 +61,7 @@ def part_2(input):
 
     print("part 2", sol)
 
+start = time_ns()
 part_2(input)
-
+end = time_ns()
+print((end - start) / 1_000_000_000)
