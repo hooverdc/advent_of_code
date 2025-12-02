@@ -22,23 +22,36 @@ def part_1(input):
 
 part_1(input)
 
+def int_to_list_of_ints(n):
+    if n == 0:
+        yield 0
+    while n != 0:
+        n, d = divmod(n, 10)
+        yield d
+
 def part_2(input):
+    
     sol = 0
+    c = []
 
     for seq in input:
         start, end = seq
         for i in range(start, end+1):
-            s = [int(c) for c in str(i)]
+            s = list(reversed(tuple(int_to_list_of_ints(i))))
             d = len(s)
-            for x in range(1, (d // 2) + 1):
+
+            for x in range(1, (d // 2) + 1)[::-1]:
                 if d % x != 0:
                     continue
 
-                c = []
+                c.clear()
                 for y in range(0, d, x):
                     c.append(s[y:y+x])
 
-                if all([c[0] == n for n in c[1:]]):
+                for n in c[1:]:
+                    if c[0] != n:
+                        break
+                else:
                     sol += i
                     break
 
