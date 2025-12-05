@@ -15,8 +15,8 @@ def get_input() -> Path:
     return parser.parse_args(namespace=CliNamespace()).input
 
 @contextmanager
-def timer():
+def timer(name: str = ""):
     start = time.perf_counter()
     yield
     end = time.perf_counter()
-    print(f"Execution time: {(end - start) * 1000:.2f} ms")
+    print(f"Execution time {name}: {(end - start) * 1000:.2f} ms")
