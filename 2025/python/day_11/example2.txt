@@ -1,4 +1,4 @@
-you: aaa bbb
+svr: aaa bbb
 aaa: fft
 fft: ccc
 bbb: tty
